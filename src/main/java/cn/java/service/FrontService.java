@@ -12,4 +12,5 @@ public interface FrontService {
      */
     int getUser(String username, String password);
 
+    void test();
 }

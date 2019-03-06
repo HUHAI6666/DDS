@@ -8,5 +8,8 @@
 </head>
 <body>
 <h1>我是pc管理页面</h1>
+<form action="/front/test.do" method="post">
+	<input type="submit" id="sub" >确认提交</button>
+</form>
 </body>
 </html>

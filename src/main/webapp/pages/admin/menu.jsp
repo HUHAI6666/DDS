@@ -114,7 +114,7 @@
 				title:"添加菜单",
 				width:400,
 				height:300,
-				draggable:false,
+				draggable:true,
 				collapsible:false,
 				resizable:false,
 				minimizable:false,

@@ -20,6 +20,12 @@ public class FrontController {
     public int selectUser(String username, String password) {
         return frontService.getUser(username, password);
     }
+    
+    @RequestMapping("/test.do")
+    @ResponseBody
+    public void test() {
+        frontService.test();
+    }
 
     // ---------------------视图解析器-------------------------------------
     @RequestMapping("/testView.do")
