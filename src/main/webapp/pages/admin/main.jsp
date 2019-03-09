@@ -8,21 +8,26 @@
 <head>
 <base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台</title>
+<title>XXX系统</title>
+<link rel="icon" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
+	<link rel="bookmark" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
 <!-- 导入easyui的资源文件 -->
-<link rel="stylesheet" type="text/css"	href="<%=basePath %>/static/js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"	href="<%=basePath %>/static/js/easyui/themes/icon.css">
-<script type="text/javascript"	src="<%=basePath %>/static/js/easyui/jquery.min.js"></script>
-<script type="text/javascript"	src="<%=basePath %>/static/js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript"	src="<%=basePath %>/static/js/pages/main.js"></script>
-<script type="text/javascript"	src="<%=basePath %>/static/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"	href="<%=basePath %>static/js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"	href="<%=basePath %>static/js/easyui/themes/icon.css">
+<script type="text/javascript" src="<%=basePath %>static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"	src="<%=basePath %>static/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"	src="<%=basePath %>static/js/pages/main.js"></script>
+<script type="text/javascript"	src="<%=basePath %>static/js/easyui/locale/easyui-lang-zh_CN.js"></script>
 
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'north',title:'North Title',split:true" style="height: 100px;"></div>
-	<div data-options="region:'south',title:'South Title',split:true" style="height: 100px;"></div>
+	<div data-options="region:'north'" style="height: 50px;">
+		<h4>XXX系统</h4>
+	</div>
+	<!--<div data-options="region:'south',title:'South Title',split:true" style="height: 100px;"></div> -->
 	<!-- <div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>  -->
-	<div data-options="region:'west',title:'West',split:true,iconCls:'icon-world'"	style="width: 200px;">
+	<div data-options="region:'west',title:'Navigation',split:true,iconCls:'icon-world'"	style="width: 200px;">
 		<ul id="tt" class="easyui-tree" data-options="lines:true,animate:true,checkbox:true"></ul>
 	</div>
 	<div data-options="region:'center',title:'Center',noheader:true" style="padding: 5px; background: #eee;">

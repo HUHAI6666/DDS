@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Description: 只存放spring boot的启动代码<br/>
  */
-@SpringBootApplication(scanBasePackages = { "cn.java.controller.*", "cn.java.service.impl", "cn.java.utils"})
+@SpringBootApplication(scanBasePackages = { "cn.java.**"})
 @MapperScan(value = "cn.java.mapper")
 public class ApplicationStart {
     public static void main(String[] args) {

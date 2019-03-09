@@ -8,18 +8,21 @@
 	<base href="<%=basePath %>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>登录</title>
+	<link rel="icon" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
+	<link rel="bookmark" href="<%=basePath %>static/images/favicon.ico" type="image/x-icon" />
 	<!-- 导入easyui的资源文件 -->
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/js/easyui/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/js/easyui/themes/icon.css">
-	<script type="text/javascript" src="<%=basePath %>/static/js/easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/static/js/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/static/js/jsonHandler.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>static/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>static/js/easyui/themes/icon.css">
+	<script type="text/javascript" src="<%=basePath %>static/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>static/js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>static/js/jsonHandler.js"></script>
 </head>
 <body>
 	<div id="win">
 		<center style="padding-top: 30px">
 			<form id="form">
-				<p>用户名：<input type="text" name="username"></p>
+				<p>用户名：<input type="text" name="name"></p>
 				<p>密  &nbsp;&nbsp;   码：<input type="password" name="password"></p>
 				<p>
 					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="login">登录</a>  
@@ -46,11 +49,11 @@
 			$("#login").click(function(){
 				//var param = $("#form").serializeObject();
 				$.ajax({
-					url:'<%=basePath %>admin/isLogin.do',
+					url:'<%=basePath %>admin/isLogin',
 					type:'post',
 					data:$("#form").serializeObject(),
 					/* data:{
-						username:$("input[name=username]").val(),
+						username:$("input[name=name]").val(),
 						password:$("input[name=password]").val(),
 					}, */
 					dataType:'json',
@@ -62,9 +65,9 @@
 							//提示信息
 							$.messager.confirm('确认','账号名或者密码错误!',function(r){    
 							    if (r){  //点击了确认按钮  
-							    	$("input[name=username]").val("");
+							    	$("input[name=name]").val("");
 									$("input[name=password]").val("");
-									$("input[name=username]").focus();
+									$("input[name=name]").focus();
 							    }   
 							});  
 

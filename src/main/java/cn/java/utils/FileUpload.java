@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.java.controller.admin.AdminController;
 import cn.java.entity.Test;
-import cn.java.mapper.AdminMapper;
 import cn.java.mapper.TestMapper;
 
 public class FileUpload {
