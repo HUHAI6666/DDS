@@ -15,21 +15,22 @@ $(function(){
 //				}
 			}
 			else{
-				if($("#tab").tabs('exists',node.text)){
-					$("#tab").tabs('select',node.text);
-				}
-				else{
-					$("#tab").tabs('add',{
-						title:node.text,
-						iconCls:node.iconCls, 
-						content:'Tab Body',    
-						closable:true,  
-						href:node.href
-					});
-				}
-				
+				document.getElementById('mainFrame').src = node.href;
+//				if ($("#tab").tabs('exists', node.text)) {
+//					$("#tab").tabs('select', node.text);
+//				} else {
+//					$("#tab").tabs('add', {
+//						title : node.text,
+//						iconCls : node.iconCls,
+//						content : 'Tab Body',
+//						closable : true,
+//						href : node.href
+//					});
+//				}
 			}
 			
 		}
 	})
+	
 });
+

@@ -1,5 +1,5 @@
 
-package cn.java.controller.application;
+package cn.java.start;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

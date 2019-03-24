@@ -18,14 +18,21 @@
 	<script type="text/javascript" src="<%=basePath %>static/js/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath %>static/js/jsonHandler.js"></script>
 </head>
+
+<style type="text/css">    
+     body{    
+        background-image: url(../../static/images/4.jpg);    
+        background-size:cover;  
+     }    
+ </style>
 <body>
 	<div id="win">
 		<center style="padding-top: 30px">
 			<form id="form">
-				<p>用户名：<input type="text" name="name"></p>
-				<p>密  &nbsp;&nbsp;   码：<input type="password" name="password"></p>
-				<p>
-					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="login">登录</a>  
+				<p style="margin-bottom: 20px">用户名：<input type="text" name="name"></p>
+				<p style="margin-bottom: 20px">密  &nbsp;&nbsp;   码：<input type="password" name="password"></p>
+				<p style="margin-bottom: 20px">
+					<a style="margin-right: 10px;" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="login">登录</a>  
 					&nbsp;
 					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">取消</a>  
 				</p>
@@ -35,14 +42,17 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#win').window({    
-			    width:300,    
-			    height:200,    
+			    width:400,    
+			    height:250,    
 			    modal:true,
-			    title:'登录',/* 设置窗口的标题 */
-			    iconCls:'icon-login'/* 设置窗口的图标 */,
+			    title:'数据脱敏系统',/* 设置窗口的标题 */
+			    iconCls:'55.ico'/* 设置窗口的图标 */,
 			    draggable:false,
 			    collapsible:false,
-			    resizable:false
+			    resizable:false,
+			    minimizable:false,
+			    maximizable:false,
+			    closable:false
 			});
 			
 			//给登录按钮添加单击事件

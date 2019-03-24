@@ -23,6 +23,10 @@ public class Test {
 	public void setMn(String mn) {
 		this.mn = mn;
 	}
+	@Override
+	public String toString() {
+		return "Test [id=" + id + ", ct=" + ct + ", mn=" + mn + "]";
+	}
 	
 
 }

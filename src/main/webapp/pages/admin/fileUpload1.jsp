@@ -46,7 +46,6 @@
 	<script type="text/javascript">
 		 
 		 function uploadFiles(){  
-			 debugger;
 		 	 var file=$("#file_sc").val();
 			 if(file == ""){  
 				alert("请选择文件！！！");

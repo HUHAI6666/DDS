@@ -1,20 +1,22 @@
 
-package cn.java.controller.front;
+package cn.java.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import ch.qos.logback.core.net.LoginAuthenticator;
 import cn.java.entity.User;
 import cn.java.service.AdminService;
 
@@ -26,7 +28,6 @@ public class AdminController {
 
     @RequestMapping(value = "/login")
     public ModelAndView toIndex() {// 配置默认访问首页
-//        return "redirect:/index.jsp";
     	return new ModelAndView("login");
     }
     
@@ -45,7 +46,7 @@ public class AdminController {
 //    }
     //配套序列化的params
     public boolean isLogin(@RequestBody Map<String, Object> params, HttpServletRequest request) {
-        System.out.println(params.get("name"));
+        System.out.println("welcome " + params.get("name"));
         if(adminService.isLogin(params.get("name").toString(), params.get("password").toString())){
         	User user = new User();
         	user.setName(params.get("name").toString());
@@ -56,12 +57,13 @@ public class AdminController {
         return false;
     }
     
-  //退出
-    @RequestMapping("/logout")
-    public String  logout(HttpServletRequest request){
+    //退出
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request,HttpServletResponse response){
         //移除session
         request.getSession().invalidate();
-        return "redirect:/admin/login";
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +request.getContextPath()+"/";
+        return "redirect:" + basePath;
     }
 
     

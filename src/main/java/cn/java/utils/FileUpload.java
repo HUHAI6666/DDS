@@ -38,9 +38,9 @@ public class FileUpload {
 		List<Test> listTests = new ArrayList<Test>();
 		for(int i = 0 ; i < length ; i = i + 3){
 			Test test = new Test();
-			test.setId(list.get(i));
-			test.setCt(list.get(i + 1));
-			test.setMn(list.get(i + 2));
+			test.setId(list.get(i).substring(list.get(i).indexOf("/") + 1));
+			test.setCt(list.get(i + 1).substring(list.get(i + 1).indexOf("-") + 1));
+			test.setMn(list.get(i + 2).substring(list.get(i + 2).indexOf("mn") + 2));
 			listTests.add(test);
 		}
 		return listTests;
