@@ -4,7 +4,13 @@ package cn.java.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import cn.java.entity.Menu;
 
 /**
  * Description: easyui后台 <br/>
@@ -36,7 +42,21 @@ public interface AdminMapper {
      * 查询所有记录条数
      * @return
      */
-    
     @Select("SELECT count(*) as total FROM admin_nav")
     int countNavs();
+    
+    @Insert("insert into admin_nav(text,state,iconCls,pid,href) values(#{text},#{state},#{iconCls},#{pid},#{href})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    int insertMenu(Menu menu);
+    
+    @Update("update admin_nav set text=#{text},state=#{state},iconCls=#{iconCls},pid=#{pid},href=#{href} where id=#{id}")
+    int updateMenu(Menu menu);
+    
+    @Delete({"<script> delete from admin_nav where id in " +
+            "<foreach collection=\"list\" item=\"item\" index=\"index\" open=\"(\" separator=\",\" close=\")\"> "+
+            " #{item} " +
+            "</foreach> </script>"})
+    //@Delete("delete from admin_nav where id in #{list}")
+    int deleteMenu(List<Integer> list);
 }
+

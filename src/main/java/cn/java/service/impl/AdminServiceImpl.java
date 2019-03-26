@@ -16,6 +16,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.java.entity.Menu;
 import cn.java.mapper.AdminMapper;
 import cn.java.service.AdminService;
 
@@ -52,5 +53,34 @@ public class AdminServiceImpl implements AdminService {
     	map.put("rows", listMaps);
     	map.put("total", total);
     	return map;
+    }
+    
+    @Override
+    public String addMenu(Menu menu){
+    	int key = adminMapper.insertMenu(menu);
+    	System.out.println(menu.getId());
+    	System.out.println(key);
+    	if(key ==1){
+    		return "success";
+    	}
+    	return "false";
+    }
+    
+    @Override
+    public String editMenu(Menu menu){
+    	int key = adminMapper.updateMenu(menu);
+    	if(key ==1){
+    		return "success";
+    	}
+    	return "false";
+    }
+    
+    @Override
+    public String removeMenu(List<Integer> list){
+    	int key = adminMapper.deleteMenu(list);
+    	if(key > 0){
+    		return "success";
+    	}
+    	return "false";
     }
 }

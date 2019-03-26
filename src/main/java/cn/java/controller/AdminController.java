@@ -2,6 +2,8 @@
 package cn.java.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.java.entity.Menu;
 import cn.java.entity.User;
 import cn.java.service.AdminService;
 
@@ -78,6 +81,34 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> getAllMenu(int page, int rows) {
 		return adminService.setectMenu(page, rows);
+	}
+    
+    @RequestMapping(value = "/addMenu",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> addMenu(@RequestBody Menu menu) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	String msg = adminService.addMenu(menu);
+    	resultMap.put("result", msg);
+    	return resultMap;
+	}
+    
+    @RequestMapping(value = "/editMenu",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> editMenu(@RequestBody Menu menu) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	String msg = adminService.editMenu(menu);
+    	resultMap.put("result", msg);
+    	return resultMap;
+	}
+    
+    @RequestMapping(value = "/removeMenu",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> removeMenu(@RequestBody List<Integer> parm) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	System.out.println("str:"+parm);
+    	String msg = adminService.removeMenu(parm);
+    	resultMap.put("result", msg);
+    	return resultMap;
 	}
     
 }

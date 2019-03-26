@@ -102,7 +102,10 @@ public class FrontServiceImpl implements FrontService {
     	int key = ruleMapper.insert(rule);
     	System.out.println(rule.getId());
     	System.out.println(key);
-    	return "success";
+    	if(key ==1){
+    		return "success";
+    	}
+    	return "false";
     }
     
     @Override

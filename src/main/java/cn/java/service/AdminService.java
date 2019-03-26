@@ -4,6 +4,10 @@ package cn.java.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
+import cn.java.entity.Menu;
+
 public interface AdminService {
 	
 	/**
@@ -28,4 +32,25 @@ public interface AdminService {
      * @return
      */
     public Map<String, Object> setectMenu(int page, int rows);
+    
+    /**
+     * 添加菜单
+     * @param menu
+     * @return
+     */
+    public String addMenu(Menu menu);
+    
+    /**
+     * 修改菜单
+     * @param menu
+     * @return
+     */
+    public String editMenu(Menu menu);
+    
+    /**
+     * 删除菜单
+     * @param list
+     * @return
+     */
+    public String removeMenu(List<Integer> list);
 }
