@@ -53,4 +53,6 @@ public interface AdminService {
      * @return
      */
     public String removeMenu(List<Integer> list);
+    
+    public Map<String, Object> selectUser(int page, int rows);
 }

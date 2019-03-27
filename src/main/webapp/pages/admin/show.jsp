@@ -20,7 +20,7 @@
 </head>
 <body>
 <table id="dg1" data-options="fit:true"></table>  
-	<div id="add">
+	<!-- <div id="add">
 		<center style="padding-top:20px">
 			<form id="form1" action="">
 					<p>  ID：<input type="text" name="id"></p>
@@ -33,8 +33,7 @@
 			</form>
 			
 		</center>
-		
-	</div>
+	</div> -->
 	<script type="text/javascript">
 		$(function(){
 			$('#dg1').datagrid({    
@@ -47,7 +46,7 @@
 			        {field:'ct',title:'CT',width:200,align:'center'},    
 			        {field:'mn',title:'NAME',width:200,align:'center'},
 			    ]],
-			    toolbar:[
+			   /*  toolbar:[
 			             {
 			            	 iconCls:"icon-add",
 			            	 text:"添加项",
@@ -67,7 +66,7 @@
 			            		 alert("删除菜单")
 			            	 }
 			             }
-			    ]
+			    ] */
 			});
 			$("#ok").click(function(){
 				$.ajax({
@@ -100,12 +99,6 @@
 				minimizable:false,
 				maximizable:false
 			});
-			$.messager.show({
-				title:'我的消息',
-				msg:'消息将在5秒后关闭。',
-				timeout:5000,
-				showType:'slide'
-			})
 		}
 		
 	</script>

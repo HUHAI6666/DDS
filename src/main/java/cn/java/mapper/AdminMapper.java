@@ -58,5 +58,11 @@ public interface AdminMapper {
             "</foreach> </script>"})
     //@Delete("delete from admin_nav where id in #{list}")
     int deleteMenu(List<Integer> list);
+    
+    @Select("SELECT * FROM user LIMIT #{arg0},#{arg1}")
+    List<Map<String, Object>> selectUser(int startIndex, int rows);
+    
+    @Select("SELECT count(*) as total FROM user")
+    int countUsers();
 }
 

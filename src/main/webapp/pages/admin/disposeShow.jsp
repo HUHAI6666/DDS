@@ -19,7 +19,7 @@
 </head>
 <body>
 <table id="dg2" data-options="fit:true"></table>  
-	<div id="add1">
+	<!-- <div id="add1">
 		<center style="padding-top:20px">
 			<form id="form1" action="">
 					<p>  ID：<input type="text" name="id"></p>
@@ -30,10 +30,8 @@
 						<a href="javascript:void(0)" id="cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">取消</a>
 					</p>
 			</form>
-			
 		</center>
-		
-	</div>
+	</div> -->
 	<script type="text/javascript">
 		$(function(){
 			$('#dg2').datagrid({    
@@ -46,27 +44,6 @@
 			        {field:'ct',title:'CT',width:200,align:'center'},    
 			        {field:'mn',title:'NAME',width:200,align:'center'},
 			    ]],
-			    toolbar:[
-			             {
-			            	 iconCls:"icon-add",
-			            	 text:"添加项",
-			            	 handler:add,
-			             },'-',
-			             {
-			            	 iconCls:"icon-edit",
-			            	 text:"修改项",
-			            	 handler:function(){
-			            		 alert("修改菜单")
-			            	 }
-			             },'-',
-			             {
-			            	 iconCls:"icon-remove",
-			            	 text:"删除项",
-			            	 handler:function(){
-			            		 alert("删除菜单")
-			            	 }
-			             }
-			    ]
 			});
 			$("#ok").click(function(){
 				$.ajax({
@@ -87,25 +64,6 @@
 			})
 		})
 		
-		function add(){
-			$("#add").window({
-				iconCls:"icon-add",
-				title:"添加菜单",
-				width:400,
-				height:300,
-				draggable:true,
-				collapsible:false,
-				resizable:false,
-				minimizable:false,
-				maximizable:false
-			});
-			$.messager.show({
-				title:'我的消息',
-				msg:'消息将在5秒后关闭。',
-				timeout:5000,
-				showType:'slide'
-			})
-		}
 		
 	</script>
 </body>

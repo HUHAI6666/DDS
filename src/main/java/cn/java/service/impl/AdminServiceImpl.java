@@ -83,4 +83,15 @@ public class AdminServiceImpl implements AdminService {
     	}
     	return "false";
     }
+    
+    @Override
+    public Map<String, Object> selectUser(int page, int rows){
+    	int startIndex = (page-1)*rows;
+    	List<Map<String, Object>> listMaps = adminMapper.selectUser(startIndex, rows);
+    	int total = adminMapper.countUsers();
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("rows", listMaps);
+    	map.put("total", total);
+    	return map;
+    }
 }

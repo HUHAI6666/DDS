@@ -50,6 +50,7 @@
 				<p>菜单链接：<input type="text" name="href" style="width: 160px ;height: 16px"></p>
 				<p>父级菜单主键：
 					<select name="pid" style="width: 140px ;height: 22px">
+						<option value="0"></option>
 						<option value="1">系统管理</option>
 						<option value="4">数据展示</option>
 						<option value="7">文件上传</option>

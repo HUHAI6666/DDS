@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.java.entity.Menu;
 import cn.java.entity.User;
 import cn.java.service.AdminService;
+import cn.java.utils.SM3Digest;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -49,8 +50,10 @@ public class AdminController {
 //    }
     //配套序列化的params
     public boolean isLogin(@RequestBody Map<String, Object> params, HttpServletRequest request) {
-        System.out.println("welcome " + params.get("name"));
-        if(adminService.isLogin(params.get("name").toString(), params.get("password").toString())){
+        SM3Digest sm3Digest=new SM3Digest();
+		String pwd=sm3Digest.getEncrypt(params.get("password").toString());
+        if(adminService.isLogin(params.get("name").toString(), pwd)){
+        	System.out.println("welcome " + params.get("name"));
         	User user = new User();
         	user.setName(params.get("name").toString());
         	user.setPassword(params.get("password").toString());
@@ -109,6 +112,12 @@ public class AdminController {
     	String msg = adminService.removeMenu(parm);
     	resultMap.put("result", msg);
     	return resultMap;
+	}
+    
+    @RequestMapping(value = "/getAllUser")
+    @ResponseBody
+    public Map<String, Object> getAllUser(int page, int rows) {
+		return adminService.selectUser(page, rows);
 	}
     
 }

@@ -26,6 +26,7 @@ import cn.java.mapper.RuleMapper;
 import cn.java.mapper.TestMapper;
 import cn.java.service.FrontService;
 import cn.java.utils.FileUpload;
+import cn.java.utils.RandomName;
 
 @Service
 public class FrontServiceImpl implements FrontService {
@@ -139,7 +140,20 @@ public class FrontServiceImpl implements FrontService {
     		name = name.substring(0, 1) + "**";
     	}
     	if(("12").equals(rule.getName())){
-//    		name = name.substring(0, 1) + "**";
+    		if(name.length()>2){
+    			Random random = new Random();
+    			int type = random.nextInt(2);
+    			if(type ==1){   //单姓
+    				name = RandomName.randomName(true, name.length());
+    			}
+    			else{   //复姓
+    				name = RandomName.randomName(false, name.length());
+    			}
+    		}
+    		else{
+    			name = RandomName.randomName(true, name.length());
+    		}
+    		
     	}
 		return name;
     }
