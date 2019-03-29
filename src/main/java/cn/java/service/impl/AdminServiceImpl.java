@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.java.entity.Menu;
+import cn.java.entity.User;
 import cn.java.mapper.AdminMapper;
 import cn.java.service.AdminService;
 
@@ -63,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
     	if(key ==1){
     		return "success";
     	}
-    	return "false";
+    	return "failure";
     }
     
     @Override
@@ -72,7 +73,7 @@ public class AdminServiceImpl implements AdminService {
     	if(key ==1){
     		return "success";
     	}
-    	return "false";
+    	return "failure";
     }
     
     @Override
@@ -81,7 +82,18 @@ public class AdminServiceImpl implements AdminService {
     	if(key > 0){
     		return "success";
     	}
-    	return "false";
+    	return "failure";
+    }
+    
+    @Override
+    public String addUser(User user){
+    	int key = adminMapper.insertUser(user);
+    	System.out.println(user.getId());
+    	System.out.println(key);
+    	if(key ==1){
+    		return "success";
+    	}
+    	return "failure";
     }
     
     @Override
@@ -93,5 +105,32 @@ public class AdminServiceImpl implements AdminService {
     	map.put("rows", listMaps);
     	map.put("total", total);
     	return map;
+    }
+
+    @Override
+    public String checkUsername(String username){
+    	int total = adminMapper.checkUsername(username);
+        if(total != 0){
+            return "failure";
+        }
+        return "success";
+    }
+
+    @Override
+    public String editUser(User user){
+    	int key = adminMapper.updateUser(user);
+    	if(key ==1){
+    		return "success";
+    	}
+    	return "failure";
+    }
+
+    @Override
+    public String removeUser(List<Integer> list){
+    	int key = adminMapper.deleteUser(list);
+    	if(key > 0){
+    		return "success";
+    	}
+    	return "failure";
     }
 }

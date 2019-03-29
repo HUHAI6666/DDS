@@ -25,7 +25,7 @@
 	User user=(User)session.getAttribute("session_user");
 	String name	= null;
 	if(user!=null){
-		name = user.getName();
+		name = user.getUsername();
 	}
 	
 %>
@@ -39,6 +39,7 @@
 			<img src="../../static/images/timg.jpg" style="margin-top: 7px; float: right; " onclick="loginOut();"/>
 		</div>
 		<div style="float: right;  height: 48px; margin-right: 10px;">
+			<input type="text" id="hiddenUsername" hidden="hidden" value=<%=name%>>
 			<table style="font-size: 12px; margin-top: 2px;">
 					<tr><th>欢迎您:</th></tr>
 					<tr><th>亲爱的<%=name%></th></tr>

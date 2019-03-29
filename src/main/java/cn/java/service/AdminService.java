@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import cn.java.entity.Menu;
+import cn.java.entity.User;
 
 public interface AdminService {
 	
@@ -54,5 +55,13 @@ public interface AdminService {
      */
     public String removeMenu(List<Integer> list);
     
+    public String addUser(User user);
+    
     public Map<String, Object> selectUser(int page, int rows);
+
+    public String checkUsername(String username);
+
+    public String editUser(User user);
+
+    public String removeUser(List<Integer> list);
 }

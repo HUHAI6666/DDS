@@ -44,10 +44,21 @@ public class AdminController {
      */
     @RequestMapping(value = "/isLogin")
     @ResponseBody
-//    public boolean isLogin(String username, String password) {
-//        System.out.println(username);
-//        return adminService.isLogin(username, password);
-//    }
+/*    public boolean isLogin(String username, String password, HttpServletRequest request) {
+    	System.out.println("welcome " + username);
+    	SM3Digest sm3Digest=new SM3Digest();
+		String pwd=sm3Digest.getEncrypt(password);
+        if(adminService.isLogin(username, pwd)){
+        	System.out.println("welcome " + username);
+        	User user = new User();
+        	user.setUsername(username);
+        	user.setPassword(password);
+        	request.getSession().setAttribute("session_user",user);
+        	return true;
+        }
+        return false;
+    
+    }*/
     //配套序列化的params
     public boolean isLogin(@RequestBody Map<String, Object> params, HttpServletRequest request) {
         SM3Digest sm3Digest=new SM3Digest();
@@ -55,7 +66,7 @@ public class AdminController {
         if(adminService.isLogin(params.get("name").toString(), pwd)){
         	System.out.println("welcome " + params.get("name"));
         	User user = new User();
-        	user.setName(params.get("name").toString());
+        	user.setUsername(params.get("name").toString());
         	user.setPassword(params.get("password").toString());
         	request.getSession().setAttribute("session_user",user);
         	return true;
@@ -114,10 +125,52 @@ public class AdminController {
     	return resultMap;
 	}
     
+    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> addUser(@RequestBody User user) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	SM3Digest sm3Digest=new SM3Digest();
+        user.setPassword(sm3Digest.getEncrypt(user.getPassword()));
+    	String msg = adminService.addUser(user);
+    	resultMap.put("result", msg);
+    	return resultMap;
+	}
+    
     @RequestMapping(value = "/getAllUser")
     @ResponseBody
     public Map<String, Object> getAllUser(int page, int rows) {
 		return adminService.selectUser(page, rows);
+	}
+
+    //校验名字是否重复
+    @RequestMapping(value = "/checkUsername",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> checkUsername(@RequestParam("username") String username) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	String msg = adminService.checkUsername(username);
+    	resultMap.put("result", msg);
+		return resultMap;
+	}
+    
+    @RequestMapping(value = "/editUser",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> editUser(@RequestBody User user) {
+        SM3Digest sm3Digest=new SM3Digest();
+        user.setPassword(sm3Digest.getEncrypt(user.getPassword()));
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	String msg = adminService.editUser(user);
+    	resultMap.put("result", msg);
+    	return resultMap;
+	}
+
+    @RequestMapping(value = "/removeUser",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> removeUser(@RequestBody List<Integer> parm) {
+    	Map<String,  Object> resultMap = new HashMap<String, Object>();
+    	System.out.println("str:"+parm);
+    	String msg = adminService.removeUser(parm);
+    	resultMap.put("result", msg);
+    	return resultMap;
 	}
     
 }

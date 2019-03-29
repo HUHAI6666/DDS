@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import cn.java.entity.Menu;
+import cn.java.entity.User;
 
 /**
  * Description: easyui后台 <br/>
@@ -59,10 +60,26 @@ public interface AdminMapper {
     //@Delete("delete from admin_nav where id in #{list}")
     int deleteMenu(List<Integer> list);
     
+    @Insert("insert into user(username,password,role) values(#{username},#{password},#{role})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    int insertUser(User user);
+    
     @Select("SELECT * FROM user LIMIT #{arg0},#{arg1}")
     List<Map<String, Object>> selectUser(int startIndex, int rows);
     
     @Select("SELECT count(*) as total FROM user")
     int countUsers();
+
+    @Select("SELECT count(*) as total FROM USER WHERE USERNAME = #{arg0}")
+    int checkUsername(String username);
+
+    @Update("update user set password=#{password},role=#{role} where id=#{id}")
+    int updateUser(User user);
+
+    @Delete({"<script> delete from user where id in " +
+            "<foreach collection=\"list\" item=\"item\" index=\"index\" open=\"(\" separator=\",\" close=\")\"> "+
+            " #{item} " +
+            "</foreach> </script>"})
+    int deleteUser(List<Integer> list);
 }
 
