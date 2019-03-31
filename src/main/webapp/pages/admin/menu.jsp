@@ -26,16 +26,16 @@
 		<center style="padding-top:20px">
 			<form id="form1" action="">
 				<input type="text" name="id" hidden="hidden">
-				<p>菜单名称：<input type="text" name="text" style="width: 160px ;height: 16px"></p>
+				<p>菜单名称：<input type="text" name="text" id="text" style="width: 160px ;height: 16px"></p>
 				<p>展开状态：
-					<select name="state" style="width: 160px ;height: 22px">
-					<option value="open">open</option>
+					<select name="state" id="state" style="width: 160px ;height: 22px">
+						<option value="open">open</option>
 						<option value="closed" selected="selected">closed</option>
 					</select>
 				</p>
 				<p>菜单图标：
-					<select name="iconCls" style="width: 160px ;height: 22px">
-						<option value="icon-print">icon-print</option>
+					<select name="iconCls" id="iconCls" style="width: 160px ;height: 22px">
+						<option value="icon-print" selected="selected">icon-print</option>
 						<option value="icon-help">icon-help</option>
 						<option value="icon-system">icon-system</option>
 						<option value="icon-money">icon-money</option>
@@ -45,11 +45,12 @@
 						<option value="icon-ok">icon-ok</option>
 						<option value="icon-cancel">icon-cancel</option>
 						<option value="icon-no">icon-no</option>
+						<option value="icon-user">icon-user</option>
 					</select>
 				</p>
-				<p>菜单链接：<input type="text" name="href" style="width: 160px ;height: 16px"></p>
+				<p>菜单链接：<input type="text" name="href" id="href" style="width: 160px ;height: 16px"></p>
 				<p>父级菜单主键：
-					<select name="pid" style="width: 140px ;height: 22px">
+					<select name="pid" id="pid" style="width: 140px ;height: 22px">
 						<option value="0"></option>
 						<option value="1">系统管理</option>
 						<option value="4">数据展示</option>
@@ -163,6 +164,7 @@
 				title:"添加菜单",
 				width:400,
 				height:300,
+				modal:true,
 				draggable:true,
 				collapsible:false,
 				resizable:false,
@@ -172,6 +174,11 @@
                 	$("#save").show();
                 }
 			});
+			$("#text").val("");
+			$("#state").val("closed");
+			$("#iconCls").val("icon-print");
+			$("#href").val("");
+			$("#pid").val("0");
 			$("#save").hide();
 			$.messager.show({
 				title:'我的消息',
@@ -195,6 +202,7 @@
 				title:"修改菜单",
 				width:400,
 				height:300,
+				modal:true,
 				draggable:true,
 				collapsible:false,
 				resizable:false,

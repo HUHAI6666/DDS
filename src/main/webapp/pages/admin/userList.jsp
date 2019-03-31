@@ -186,6 +186,7 @@
 				title:"添加用户",
 				width:400,
 				height:240,
+				modal:true,
 				draggable:true,
 				collapsible:false,
 				resizable:false,
@@ -195,6 +196,10 @@
                 	$("#save").show();
                 }
 			});
+			$("#username").removeAttr("disabled");
+			$("#username").val("");
+			$("#password").val("");
+			$("#role").val("1");
 			$("#save").hide();
 		}
 		
@@ -213,6 +218,7 @@
 				title:"修改用户",
 				width:400,
 				height:240,
+				modal:true,
 				draggable:true,
 				collapsible:false,
 				resizable:false,
