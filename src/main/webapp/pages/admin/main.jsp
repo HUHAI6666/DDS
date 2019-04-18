@@ -27,6 +27,14 @@
 	if(user!=null){
 		name = user.getUsername();
 	}
+	else{
+	%>
+	<script type="text/javascript">
+		window.location.href="<%=basePath %>pages/admin/login.jsp";
+	</script>
+	
+	<%		
+	}
 	
 %>
 <body class="easyui-layout">
