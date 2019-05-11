@@ -19,8 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import cn.java.entity.Account;
 import cn.java.entity.Rule;
 import cn.java.entity.Test;
+import cn.java.mapper.AccountMapper;
 import cn.java.mapper.FrontMapper;
 import cn.java.mapper.RuleMapper;
 import cn.java.mapper.TestMapper;
@@ -36,6 +38,8 @@ public class FrontServiceImpl implements FrontService {
     private TestMapper testMapper;
     @Autowired
     private RuleMapper ruleMapper;
+    @Autowired
+    private AccountMapper accountMapper;
 //    @Autowired
 //    private FileUpload fileUpload;
     private static Logger logger = Logger.getLogger(FrontServiceImpl.class);
@@ -93,8 +97,10 @@ public class FrontServiceImpl implements FrontService {
     	
 //    	String path = "src/main/resources/testdata.txt";
     	FileUpload fileUpload = new FileUpload();
-    	List<Test> list = fileUpload.listToObject(fileUpload.readFile(filePath + fileName));
-    	testMapper.insert(list);
+//    	List<Test> list = fileUpload.listToObject(fileUpload.readFile(filePath + fileName));
+    	List<Account> list = fileUpload.listToObject(fileUpload.readFile(filePath + fileName));
+//    	testMapper.insert(list);
+    	accountMapper.insert(list);
     	return "上传成功";
     }
     
