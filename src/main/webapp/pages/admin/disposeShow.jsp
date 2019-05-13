@@ -40,10 +40,14 @@
 			    rownumbers:true,
 			   /*  singleSelect:true, */
 			    columns:[[    
-			        {field:'id',title:'ID',width:200,align:'center'},    
-			        {field:'ct',title:'CT',width:200,align:'center'},    
-			        {field:'mn',title:'NAME',width:200,align:'center'},
-			    ]],
+					        {field:'userName',title:'用户名',width:200,align:'center'},    
+					        {field:'password',title:'密码',width:500,align:'center'},    
+					        {field:'name',title:'姓名',width:70,align:'center'},
+					        {field:'idNo',title:'身份证号',width:200,align:'center'},
+					        {field:'nickName',title:'昵称',width:150,align:'center'},
+					        {field:'phone',title:'手机号',width:100,align:'center'},
+					        {field:'email',title:'邮箱',width:200,align:'center'},
+					    ]],
 			});
 			$("#ok").click(function(){
 				$.ajax({

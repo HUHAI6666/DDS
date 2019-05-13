@@ -52,29 +52,38 @@
 			</select>
 		</p>
 		
-		<p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-			<select name="address" style="width: 550px">
+		<p>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+			<select name="nickName" style="width: 550px">
 				<option value="40" >---</option>
-				<option value="41" >上海市徐汇区***(只显示到地区，不显示详细地址)</option>
-				<option value="42" >上海市(截断)</option>
+				<option value="41" >a***b(只显示第一个和最后一个字符)</option>
+				<option value="42" >数字无效化(昵称中的数字变成随机字母)</option>
 			</select>
 		</p>
 			
 		<p>电子邮箱：
 			<select name="email" style="width: 550px">
 				<option value="50" >---</option>
-				<option value="51" >d**@126.com(邮箱前缀仅显示第一个字母，其他隐藏，@及后面的地址显示)</option>
+				<option value="51" >d**@126.com(邮箱前缀仅显示第一个数字/字母，其他隐藏，@及后面的地址显示)</option>
 				<option value="52" >dax123@***.com(@后面具体邮箱类型隐藏)</option>
 			</select>
 		</p>
 		
-		<p>银行卡号：
-			<select name="cardNo" style="width: 550px">
+		<p>用&nbsp;&nbsp;户&nbsp;&nbsp;名：
+			<select name="userName" style="width: 550px">
 				<option value="60" >---</option>
-				<option value="61" >622260******1234(显示前六位和后四位，其他用星号隐藏每位1个星号)</option>
-				<option value="62" >6222600000000000(显示前六位，其他十位用随机数代替)</option>
+				<option value="61" >123*******(用户名仅显示前三位，统一长度十位)</option>
+				<option value="62" >随机截取(随机生成用户名的起始位置和结束位置的值并截取)</option>
 			</select>
 		</p>
+		
+		<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：
+			<select name="password" style="width: 550px">
+				<option value="70" >---</option>
+				<option value="71" >只显示数字(加密后密码中的数字)</option>
+				<option value="72" >只显示字母(加密后密码中的字母)</option>
+			</select>
+		</p>
+		
 		<p>
 			<a href="javascript:void(0)" id="ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="margin-left: 620px;">确定</a>
 		</p>
@@ -94,7 +103,7 @@
 					$("#form1").form('load',rule);
 				}
 				else{
-					alert("获取规则列表失败!");
+					alert("规则列表为空，获取规则列表失败!");
 				}
 			},
 			error:function(result){

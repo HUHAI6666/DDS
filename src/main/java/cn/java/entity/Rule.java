@@ -6,10 +6,29 @@ public class Rule {
 	private String name ;
 	private String idNo ;
 	private String phone ;
-	private String address ;
+	private String nickName ;
 	private String email ;
-	private String cardNo ;
+	private String userName ;
+	private String password ;
 	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getId() {
 		return id;
 	}
@@ -34,23 +53,11 @@ public class Rule {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getCardNo() {
-		return cardNo;
-	}
-	public void setCardNo(String cardNo) {
-		this.cardNo = cardNo;
 	}
 	public Rule() {
 		super();
@@ -58,8 +65,9 @@ public class Rule {
 	@Override
 	public String toString() {
 		return "Rule [id=" + id + ", name=" + name + ", idNo=" + idNo
-				+ ", phone=" + phone + ", address=" + address + ", email="
-				+ email + ", cardNo=" + cardNo + "]";
+				+ ", phone=" + phone + ", nickName=" + nickName + ", email="
+				+ email + ", userName=" + userName + ", password=" + password
+				+ "]";
 	}
 	
 }

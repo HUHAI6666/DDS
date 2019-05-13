@@ -60,7 +60,7 @@ public class FrontServiceImpl implements FrontService {
     @Override
     public Map<String, Object> getAllData(int page, int rows){
     	int startIndex = (page-1)*rows;
-    	List<Test> list = frontMapper.getAllData(startIndex, rows);
+    	List<Account> list = frontMapper.getAllData(startIndex, rows);
     	int total = frontMapper.count();
     	Map<String, Object> map = new HashMap<String, Object>();
     	map.put("rows", list);
@@ -71,8 +71,8 @@ public class FrontServiceImpl implements FrontService {
     @Override
     public Map<String, Object> getAllEncryptData(int page, int rows){
     	int startIndex = (page-1)*rows;
-    	List<Test> list = frontMapper.getAllData(startIndex, rows);
-    	List<Test> encryptList = encryptData(list);
+    	List<Account> list = frontMapper.getAllData(startIndex, rows);
+    	List<Account> encryptList = encryptData(list);
     	int total = frontMapper.count();
     	Map<String, Object> map = new HashMap<String, Object>();
     	map.put("rows", encryptList);
@@ -129,14 +129,20 @@ public class FrontServiceImpl implements FrontService {
     	return resultMap;
     }
     
-    public List<Test> encryptData(List<Test> list){
+    public List<Account> encryptData(List<Account> list){
     	Rule rule = ruleMapper.getRule();
     	if(rule == null){
     		return list;
     	}
-    	for(Test test : list){
-    		test.setMn(encryptName(test.getMn(), rule));
-    		test.setId(encryptIdNo(test.getId(), rule));
+    	//脱敏
+    	for(Account account : list){
+    		account.setName(encryptName(account.getName(), rule));
+    		account.setEmail(encryptEmail(account.getEmail(), rule));
+    		account.setIdNo(encryptIdNo(account.getIdNo(), rule));
+    		account.setPhone(encryptPhone(account.getPhone(), rule));
+    		account.setNickName(encryptNickName(account.getNickName(), rule));
+    		account.setUserName(encryptUserName(account.getUserName(),rule));
+    		account.setPassword(encryptPassword(account.getPassword(),rule));
     	}
 		return list;
     }
@@ -183,24 +189,7 @@ public class FrontServiceImpl implements FrontService {
     	}
 		return phone;
     }
-    
-    public String encryptAddress(String address, Rule rule){
-    	if("41".equals(rule.getAddress())){
-    		int i = address.indexOf("区");
-    		if(i != -1){
-    			address = address.substring(0, i + 1) + "******";
-    		}
-    	}
-    	if("42".equals(rule.getAddress())){
-    		int i = address.indexOf("市");
-    		if(i != -1){
-    			address = address.substring(0, i + 1);
-    		}
-    	}
-		return address;
-    	
-    }
-    
+   
     public String encryptEmail(String email, Rule rule){
     	if("51".equals(rule.getEmail())){
     		int index = email.lastIndexOf("@");
@@ -215,19 +204,53 @@ public class FrontServiceImpl implements FrontService {
     	
     }
     
-    public String encryptCardNo(String cardNo, Rule rule){
-    	if("61".equals(rule.getCardNo())){
-    		cardNo = cardNo.substring(0, 6) + "******" + cardNo.substring(12);
+    //4--
+    public String encryptNickName(String nickName, Rule rule){
+    	int len = nickName.length();
+    	if("41".equals(rule.getNickName())){
+    		String patten = createPatten(len - 2);
+    		nickName = nickName.substring(0, 1) + patten + nickName.substring(len - 1);
     	}
-    	if("62".equals(rule.getCardNo())){
-    		cardNo = cardNo.substring(0, 6);
-    		Random random = new Random();
-    		for(int i = 0 ; i < 10 ; i++){
-    			int key = random.nextInt();
-    			cardNo += key + "";
+    	if("42".equals(rule.getNickName())){
+    		char[] temp = nickName.toCharArray();
+    		for(int i = 0 ; i < len ; i ++){
+    			//如果该字符是数字
+    			if(Character.isDigit(temp[i])){
+    				
+    			}
     		}
     	}
-		return cardNo;
-    	
+    	return nickName;
+    }
+    
+    //6--
+    public String encryptUserName(String userName, Rule rule){
+    	if("41".equals(rule.getUserName())){
+    		
+    	}
+    	if("42".equals(rule.getUserName())){
+    		
+    	}
+    	return userName;
+    }
+
+    //7--
+    public String encryptPassword(String password, Rule rule){
+    	if("71".equals(rule.getPassword())){
+    		
+    	}
+    	if("72".equals(rule.getPassword())){
+    		
+    	}
+    	return password;
+    }
+    
+    //生成长度为len个*的填充字符串
+    private String createPatten(int len){
+    	StringBuilder sb = new StringBuilder();
+    	for(int i = 0 ; i < len ; i ++){
+    		sb.append("*");
+    	}
+    	return sb.toString();
     }
 }

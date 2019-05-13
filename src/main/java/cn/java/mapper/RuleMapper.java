@@ -8,7 +8,7 @@ import cn.java.entity.Rule;
 
 public interface RuleMapper {
 	
-	@Insert("insert into rule(name,idNo,phone,address,email,cardNo) values(#{name},#{idNo},#{phone},#{address},#{email},#{cardNo})")
+	@Insert("insert into rule(name,idNo,phone,nickName,email,userName,password) values(#{name},#{idNo},#{phone},#{nickName},#{email},#{userName},#{password})")
 	@Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")/*增加这个注解插入记录后会返回自增长的id*/
 	int insert(Rule rule);
 	
