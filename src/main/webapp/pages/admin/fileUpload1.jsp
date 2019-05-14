@@ -41,43 +41,59 @@
 			<input type="button" value="提交" style=" margin-left: 50px; margin-top: 10px;" onclick="uploadFiles();">
 		</form>
 	</div>
-	
+ 
+	<div id="YWaitDialog" align="center" 
+		style="background-color: #e0e0e0; margin: auto; display:none ;height: 150px; width: 300px;">
+		<p style="text-align: center; vertical-align: central;">
+			 <img src="<%=basePath%>static/images/001.gif" />
+		</p>
+		<p align="center">请等待，正在上传数据!</p>
+	</div>
 
 	<script type="text/javascript">
-		 
-		 function uploadFiles(){  
-		 	 var file=$("#file_sc").val();
-			 if(file == ""){  
-				alert("请选择文件！！！");
-				return false;  
-			 }
-			 else{
-				 var fileType = checkFile(file);
-				 if(fileType != "txt"){
-					 alert("选择的文件无效！请重新选择");
-					 $("#file_sc").val("");
-					 return false;
-				 }
-			 }
+		
+		function uploadFiles() {
 			
-			 var uploadFile = new FormData($("#tf")[0]);
-				
-			 console.log(uploadFile);
-			 if("undefined" != typeof(uploadFile) && uploadFile != null && uploadFile != ""){
+			var file = $("#file_sc").val();
+			if (file == "") {
+				alert("请选择文件！！！");
+				return false;
+			} else {
+				var fileType = checkFile(file);
+				if (fileType != "txt") {
+					alert("选择的文件无效！请重新选择");
+					$("#file_sc").val("");
+					return false;
+				}
+			}
+
+			var uploadFile = new FormData($("#tf")[0]);
+
+			console.log(uploadFile);
+			if ("undefined" != typeof (uploadFile) && uploadFile != null && uploadFile != "") {
 				$.ajax({
-					url:'<%=basePath%>front/fileUpload',
+					url : '<%=basePath%>front/fileUpload',
 					type:'POST',
 					data:uploadFile,
-					async: false,  
+					async: true,  
 					cache: false, 
 					contentType: false, //不设置内容类型
 					processData: false, //不处理数据
+					beforeSend:function () {
+						$("#YWaitDialog").show(); 
+				    }, 
+				    complete: function () {
+				    	$("#YWaitDialog").hide();
+				    },
 					success:function(data){
+						$("#YWaitDialog").hide();
 						console.log(data);
-						alert(data.result);
+						//alert(data.result);
+						notice();
 						$("#file_sc").val("");
 					},
 					error:function(){
+						$("#YWaitDialog").hide();
 						alert("上传失败！");
 						$("#file_sc").val("");
 					}
@@ -88,6 +104,10 @@
 				
 		}   
 		
+		function notice() {
+			alert("上传成功!");
+		}
+		
 		function checkFile(file) {
 			 var index = file.lastIndexOf(".");
 			 if(index!=-1){
@@ -96,6 +116,7 @@
 			 }
 			 return "";
 		 }
+		
 		 function test1(){
 			 var option = {
 			       url : '<%=basePath%>front/fileUpload',

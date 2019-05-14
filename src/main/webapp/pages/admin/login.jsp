@@ -34,7 +34,7 @@
 				<p style="margin-bottom: 20px">
 					<a style="margin-right: 10px;" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="login">登录</a>  
 					&nbsp;
-					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">取消</a>  
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" id="reset">重置</a>  
 				</p>
 			</form>
 		</center>
@@ -75,9 +75,7 @@
 							//提示信息
 							$.messager.confirm('确认','账号名或者密码错误!',function(r){    
 							    if (r){  //点击了确认按钮  
-							    	$("input[name=name]").val("");
-									$("input[name=password]").val("");
-									$("input[name=name]").focus();
+							    	common();
 							    }   
 							});  
 
@@ -85,7 +83,16 @@
 					}
 				});
 			});
+			$("#reset").click(function(){
+				common();
+			});
 		});
+		
+		function common(){
+			$("input[name=name]").val("");
+			$("input[name=password]").val("");
+			$("input[name=name]").focus();
+		}
 	</script>
 </body>
 </html>

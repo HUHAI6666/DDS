@@ -85,6 +85,10 @@ public class FrontServiceImpl implements FrontService {
     	
     	String fileName = file.getOriginalFilename();
     	String filePath = "E:\\fileUpload\\";
+    	File directory = new File(filePath);
+    	if(!directory.isDirectory()){
+    		directory.mkdir();
+    	}
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
@@ -171,6 +175,9 @@ public class FrontServiceImpl implements FrontService {
     }
     
     public String encryptIdNo(String idNo, Rule rule){
+    	if(idNo.length() != 18){
+    		return idNo;
+    	}
     	if("21".equals(rule.getIdNo())){
     		idNo = "**************" + idNo.substring(14);
     	}
@@ -213,23 +220,33 @@ public class FrontServiceImpl implements FrontService {
     	}
     	if("42".equals(rule.getNickName())){
     		char[] temp = nickName.toCharArray();
+    		Random random = new Random();
     		for(int i = 0 ; i < len ; i ++){
+    			
     			//如果该字符是数字
     			if(Character.isDigit(temp[i])){
-    				
+    				temp[i] = (char)(Math.random()*26+'a');
+//    				temp[i] = (char)(random.nextInt(26)+'a');
     			}
     		}
+    		nickName = String.valueOf(temp);
     	}
     	return nickName;
     }
     
     //6--
     public String encryptUserName(String userName, Rule rule){
-    	if("41".equals(rule.getUserName())){
-    		
+    	if("61".equals(rule.getUserName())){
+    		userName = userName.substring(0, 3) + createPatten(7);
     	}
-    	if("42".equals(rule.getUserName())){
-    		
+    	if("62".equals(rule.getUserName())){
+    		int len = userName.length();
+    		int mid = len / 2;
+    		Random random = new Random();
+    		int start = random.nextInt(mid);
+    		int tmp = random.nextInt(len);
+    		int end = tmp > mid ? tmp - 1 : tmp + mid - 1;
+    		userName = userName.substring(start, end);
     	}
     	return userName;
     }
@@ -237,10 +254,10 @@ public class FrontServiceImpl implements FrontService {
     //7--
     public String encryptPassword(String password, Rule rule){
     	if("71".equals(rule.getPassword())){
-    		
+    		password = password.replaceAll("[a-zA-Z]+", "");
     	}
     	if("72".equals(rule.getPassword())){
-    		
+    		password = password.replaceAll("\\d+", "");
     	}
     	return password;
     }
