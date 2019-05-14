@@ -17,6 +17,14 @@
 <script type="text/javascript" src="<%=basePath%>static/js/jquery.form.min.js"></script>
 </head>
 <body>
+	<div id="bg-model" style="position:fixed;display:none;background:rgba(0,0,0,0.3);width:100%;height:100%;z-index:9999">
+		<div id="YWaitDialog" align="center" style=" margin: auto ;height: 150px; width: 300px ;padding-top: 200px">
+			<p style="text-align: center; vertical-align: central;">
+				 <img src="<%=basePath%>static/images/001.gif" />
+			</p>
+			<p align="center">正在上传文件，请稍候。。。</p>
+		</div>
+	</div>
 	<div style="height:50px">
 		<table>
 			<tr>
@@ -42,18 +50,14 @@
 		</form>
 	</div>
  
-	<div id="YWaitDialog" align="center" 
-		style="background-color: #e0e0e0; margin: auto; display:none ;height: 150px; width: 300px;">
-		<p style="text-align: center; vertical-align: central;">
-			 <img src="<%=basePath%>static/images/001.gif" />
-		</p>
-		<p align="center">请等待，正在上传数据!</p>
-	</div>
+	
+	　
+	
+	
 
 	<script type="text/javascript">
 		
 		function uploadFiles() {
-			
 			var file = $("#file_sc").val();
 			if (file == "") {
 				alert("请选择文件！！！");
@@ -80,21 +84,19 @@
 					contentType: false, //不设置内容类型
 					processData: false, //不处理数据
 					beforeSend:function () {
-						$("#YWaitDialog").show(); 
+						$("#bg-model").show(); 
 				    }, 
-				    complete: function () {
-				    	$("#YWaitDialog").hide();
-				    },
 					success:function(data){
-						$("#YWaitDialog").hide();
+						$("#bg-model").hide();
+						//$(window).load(function(){alert(data.result);})
+						$(document).ready(function(){alert(data.result);});
 						console.log(data);
-						//alert(data.result);
-						notice();
+						
 						$("#file_sc").val("");
 					},
 					error:function(){
-						$("#YWaitDialog").hide();
-						alert("上传失败！");
+						$("#bg-model").remove();
+						$(document).ready(function(){alert("上传失败!");});
 						$("#file_sc").val("");
 					}
 				})
